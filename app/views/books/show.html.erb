@@ -1,0 +1,18 @@
+<% if flash[:notice] %>
+        <p id="notice">
+           <%= flash[:notice] %>
+        </p>
+    <% end %>
+
+    <% if flash[:notice2] %>
+        <p id="notice">
+            <%= flash[:notice2] %>
+        </p>
+    <% end %>
+
+<p>投稿ユーザー画像：<%= image_tag 'sample-author1.jpg' %></p>
+<p class="toptext"><a class ="link" href="<%= book_path(@book.id) %>"><%= @book.title%></a></p>
+<p class="toptext"><%= @book.body%></p>
+
+<a class ="link" href="<%= edit_book_path(@book.id) %>">Edit</a> |
+<a class ="link" href="<%= book_path(@book.id)%>" , data-method="delete", data-confirm = "Are you sure？" >Destroy</a>
