@@ -4,13 +4,40 @@
      </p>
 <% end %>
 
+<% if @book.errors.any? %>
+  <div class="error-box">
+    <% if @book.errors.count==2 %>
+
+      <h2 class = "errors">
+        2 errors prohibited this book from being saved:
+      </h2>
+    <% end %>
+
+    <% if @book.errors.count==1 %>
+      <h2 class = "error">
+      1 error prohibited this book from being saved:
+      </h2>
+    <% end %>
+
+      <ul>
+        <% @book.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class="container">
+<div class="row">
+<%= render 'list', user: @user, book: @book %>
+<div class="col-lg-8">
  <h1>Books</h1>
 
-  <table>
+  <table class="table table-striped">
 　  <thead>
 　    <tr>
+　       <th> </th>
         <th>Title</th>
-        <th>Body</th>
+        <th>Opinion</th>
       </tr>
 　  </thead>
 
@@ -18,7 +45,7 @@
 
       <% @books.each do |book| %>
         <tr>
-          <td><p>投稿ユーザー画像：<%= image_tag book.user.get_profile_image %></p></td>
+          <td><a class ="link" href="<%= book_path(book.id) %>"><%= image_tag book.user.get_profile_image %></a></td>
           <td><a class ="link" href="<%= book_path(book.id) %>"><%= book.title%></a></td>
           <td><%= book.body%></td>
 
@@ -28,5 +55,6 @@
     </tbody>
 
   </table>
-
-<%= render 'list', books: @books %>
+  </div>
+  </div>
+  </div>

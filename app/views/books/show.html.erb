@@ -1,19 +1,24 @@
-<%= render 'list', books: @books %>
-<% if flash[:notice] %>
-        <p id="notice">
-           <%= flash[:notice] %>
-        </p>
-    <% end %>
 
-    <% if flash[:notice2] %>
-        <p id="notice">
-            <%= flash[:notice2] %>
-        </p>
-    <% end %>
+<div class="container">
+<div class="row">
+<%= render 'list', user: @user, book: @book %>
+<div class="col-lg-8">
+<h1>Book detail<h1>
+    <table class="table table-striped">
+    <tbody>
+    <tr>
+    <td><p><%= image_tag @book.user.get_profile_image %></p><a class ="link" href="<%= user_path(@user.id) %>"><%= @user.name%></a></td>
+    <td><a class ="link" href="<%= book_path(@book.id) %>"><%= @book.title%></a></td>
+    <td><%= @book.body%></td>
 
-<p>投稿ユーザー画像：<%= image_tag 'sample-author1.jpg' %></p>
-<p class="toptext"><a class ="link" href="<%= book_path(@book.id) %>"><%= @book.title%></a></p>
-<p class="toptext"><%= @book.body%></p>
+<% if @book.user == current_user %>
+    <td><a class ="link" href="<%= edit_book_path(@book.id) %>">Edit</a></td>
+    <td><a class ="link" href="<%= book_path(@book.id)%>" , data-method="delete", data-confirm = "Are you sure？" >Destroy</a></td>
+<% end %>
 
-<a class ="link" href="<%= edit_book_path(@book.id) %>">Edit</a> |
-<a class ="link" href="<%= book_path(@book.id)%>" , data-method="delete", data-confirm = "Are you sure？" >Destroy</a>
+    </tr>
+    </tbody>
+</table>
+</div>
+</div>
+</div>
