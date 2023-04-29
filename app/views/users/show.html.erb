@@ -1,8 +1,7 @@
-
 <div class="container">
 <div class="row">
 <%= render 'books/list', user: @user, book: @book %>
-<div class="col-lg-8">
+<div class='col-md-8 offset-md-1'>
    <h1>Books</h1>
   <table class="table table-striped">
 　  <thead>
@@ -17,7 +16,7 @@
 
       <% @books.each do |book| %>
         <tr>
-          <td><p><%= image_tag book.user.get_profile_image %></p></td>
+          <td><a class ="link" href="<%= user_path(@user.id) %>"><%= image_tag book.user.get_profile_image %></a></td>
           <td><a class ="link" href="<%= book_path(book.id) %>"><%= book.title %></a></td>
           <td><p>Opnion：<%= book.body %></p></td>
 

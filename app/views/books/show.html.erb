@@ -2,15 +2,18 @@
 <div class="container">
 <div class="row">
 <%= render 'list', user: @user, book: @book %>
-<div class="col-lg-8">
+<div class='col-md-8 offset-md-1'>
+<br>
 <h1>Book detail<h1>
     <table class="table table-striped">
     <tbody>
     <tr>
-    <td><p><%= image_tag @book.user.get_profile_image %></p><a class ="link" href="<%= user_path(@user.id) %>"><%= @user.name%></a></td>
+    <td><a class ="link" href="<%= user_path(@user.id) %>"><%= image_tag @book.user.get_profile_image %></a>
+        <br>
+        <a class ="link" href="<%= user_path(@user.id) %>"><%= @user.name%></a>
+    </td>
     <td><a class ="link" href="<%= book_path(@book.id) %>"><%= @book.title%></a></td>
     <td><%= @book.body%></td>
-
 <% if @book.user == current_user %>
     <td><a class ="link" href="<%= edit_book_path(@book.id) %>">Edit</a></td>
     <td><a class ="link" href="<%= book_path(@book.id)%>" , data-method="delete", data-confirm = "Are you sure？" >Destroy</a></td>
