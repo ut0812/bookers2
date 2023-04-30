@@ -47,7 +47,7 @@
 
       <% @books.each do |book| %>
         <tr>
-          <td><a class ="link" href="<%= book_path(book.id) %>"><%= image_tag book.user.get_profile_image %></a></td>
+          <td><a class ="link" href="<%= user_path(book.user.id) %>"><%= image_tag book.user.get_profile_image %></a></td>
           <td><a class ="link" href="<%= book_path(book.id) %>"><%= book.title%></a></td>
           <td><%= book.body%></td>
 

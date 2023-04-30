@@ -1,4 +1,6 @@
 class BooksController < ApplicationController
+before_action :is_matching_login_user, only: [:edit, :update]
+
   def index
     @user = current_user
     @book = Book.new
@@ -33,6 +35,7 @@ class BooksController < ApplicationController
   end
 
   def show
+    @booknew = Book.new#変数を新規作成
     @book = Book.find(params[:id])
     @user = @book.user
 
@@ -59,6 +62,14 @@ class BooksController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :profile_image, :introduction)
+  end
+
+  def is_matching_login_user
+    book = Book.find(params[:id])
+    unless book.user.id == current_user.id
+    @books = Book.all
+      redirect_to '/books'
+    end
   end
 
 end
