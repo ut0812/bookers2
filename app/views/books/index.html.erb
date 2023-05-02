@@ -40,6 +40,8 @@
 　       <th> </th>
         <th>Title</th>
         <th>Opinion</th>
+        <th></th>
+        <th></th>
       </tr>
 　  </thead>
 
@@ -51,8 +53,25 @@
           <td><a class ="link" href="<%= book_path(book.id) %>"><%= book.title%></a></td>
           <td><%= book.body%></td>
 
-          </tr>
-      <% end %>
+        <td>
+        <% if book.favorited_by?(current_user) %>
+        <p>
+        <%= link_to book_favorites_path(book), method: :delete do %>
+        <i class="fas fa-heart"></i><%= book.favorites.count %>
+        <% end %>
+        </p>
+        <% else %>
+        <p>
+        <%= link_to book_favorites_path(book), method: :post do %>
+        <i class="fas fa-heart"></i><%= book.favorites.count %>
+        <% end %>
+        </p>
+        <% end %>
+        </td>
+
+        <td><p><%= link_to "#{book.book_comments.count} コメント", book_path(book.id) %></p></td>
+        <% end %>
+         </tr>
 
     </tbody>
 

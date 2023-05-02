@@ -2,9 +2,11 @@ class BooksController < ApplicationController
 before_action :is_matching_login_user, only: [:edit, :update]
 
   def index
+
     @user = current_user
     @book = Book.new
     @books = Book.all
+    @book_comment = BookComment.new
   end
 
   def edit
@@ -35,6 +37,7 @@ before_action :is_matching_login_user, only: [:edit, :update]
   end
 
   def show
+    @book_comment = BookComment.new
     @booknew = Book.new#変数を新規作成
     @book = Book.find(params[:id])
     @user = @book.user
