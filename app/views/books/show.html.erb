@@ -31,8 +31,8 @@
          <i class="fas fa-heart"></i><%= @book.favorites.count %>
         <% end %>
         </p>
+        <% end %>
     </td>
-    <% end %>
     <td>
 
     <p>コメント件数：<%= @book.book_comments.count %></p>
@@ -55,7 +55,7 @@
     <td>
     <td>
     <% if book_comment.user == current_user %>
-      <%= link_to "削除", book_book_comment_path(book_comment.book, book_comment), method: :delete %>
+      <%= link_to "Destroy", book_book_comment_path(book_comment.book, book_comment), method: :delete %>
     <% end %>
     </td>
   <% end %>

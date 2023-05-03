@@ -5,7 +5,7 @@ before_action :is_matching_login_user, only: [:destroy]
     comment = current_user.book_comments.new(book_comment_params)
     comment.book_id = book.id
     if comment.save
-    redirect_to books_path(book.id)
+    redirect_back(fallback_location: root_path)
     flash[:notice] = "comment was successfully created."
     else
       @books = Book.all
@@ -17,7 +17,7 @@ before_action :is_matching_login_user, only: [:destroy]
 
   def destroy
     BookComment.find(params[:id]).destroy
-    redirect_to books_path(book.id)
+    redirect_back(fallback_location: root_path)
   end
 
   private
